@@ -4,7 +4,7 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
 {
     protected $registry;
     protected $session;
-
+    
     function init()
     {
         $this->initView();
@@ -15,12 +15,14 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
          * módulo, hay que modificar para que esta definición de scripts
          * sea genérica y busque dentro de cada módulo particular
          */
-        $this->view->setScriptPath('./application/views/scripts/');
+        $this->view->addBasePath('./html/','');
+        
         $this->view->addHelperPath('./application/views/helpers/', 'Helper');
-
+                
         $this->registry = Zend_Registry::getInstance();
         // Zend_Loader::loadClass('clase');
     }
+    
     function preDispatch()
     {
         $session = new Zend_Session_Namespace("Autenticacion");
