@@ -1,20 +1,17 @@
 <?php
-  require_once('Zend/Gdata/AuthSub.php');
-  class Zsurforce_ZGdata_AuthSub{
   
-      static function getAuthSubTokenUri($url = null){
+  require_once('Zend/Gdata/AuthSub.php');
+  
+  class Zsurforce_ZGdata_AuthSub extends Zend_Gdata_AuthSub{
+      
+      const AUTHSUB_SCOPE = 'http://www.google.com/m8/feeds/';
+  
+      public static function getZGdataAuthSubTokenUri($next, $scope = self::AUTHSUB_SCOPE, $secure=0, $session=1, 
+                                               $request_uri = self::AUTHSUB_REQUEST_URI){
           
-          if($url !== null){
-              $next = $url;
-          }else{ 
-              $next = 'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-          }
           
-          $scope = 'http://www.google.com/m8/feeds/';
-          $secure = 0;
-          $session = 1;
-          
-      return Zend_Gdata_AuthSub::getAuthSubTokenUri($next,$scope,$secure,$session);
+          return parent::getAuthSubTokenUri($next,$scope,$secure,$session);
       }
+      
   }
 ?>
