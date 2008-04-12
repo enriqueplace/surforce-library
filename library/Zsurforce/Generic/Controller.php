@@ -17,12 +17,21 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
          */
         $this->view->addBasePath('./html/','');
 
-        $this->view->addHelperPath('./library/Zsurforce/View/Helper/', 'Helper');
+        $this->view->addHelperPath('./library/Zsurforce/View/Helper/', 'Zsurforce_View_Helper');
 
         $this->registry = Zend_Registry::getInstance();
+
+        /*
+         * Ejemplo para cargar por defecto las clases necesarias para el controller
+         */
         // Zend_Loader::loadClass('clase');
     }
-
+	/**
+	 * Asegurando antes de "despachar" si hay autenticación o no, si es true,
+	 * se registra el usuario que ingresa al sistema, y permite a través de
+	 * una variable de la vista poder ocultar o mostrar información (caso de un
+	 * admin)
+	 */
     function preDispatch()
     {
         $session = new Zend_Session_Namespace("Autenticacion");
