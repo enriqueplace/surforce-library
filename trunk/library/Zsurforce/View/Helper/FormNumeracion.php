@@ -1,6 +1,6 @@
 <?php
 
-class Zsurforce_Helper_FormNumeracion
+class Zsurforce_View_Helper_FormNumeracion
 {
     /**
     * cantTotal	 = cantidad de registros que devuelve la consulta
