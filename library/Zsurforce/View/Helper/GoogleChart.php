@@ -1,7 +1,23 @@
 <?php
-
+/**
+ * Creación de gráficas con Google Chart
+ * 
+ * @category SURFORCE
+ * @package SURFORCE-LIBRARY 
+ * @license GPL v2
+ */
 class Estadisticas_View_Helper_GoogleChart
 {
+	/**
+	 * Creación de gráficas con Google Chart
+	 * 
+	 * @param string chx
+	 * @param string chtt
+	 * @param string chd
+	 * @param string chm
+	 * @param string chg
+	 * @return xhtml
+	 */
     public function googleChart( $chx, $chtt, $chd, $chm = null, $chg = null )
     {
     	$chm = "D,C6D9FD,1,0,8|D,4D89F9,0,0,4";
