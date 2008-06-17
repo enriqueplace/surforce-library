@@ -1,34 +1,44 @@
 <?php
-
+/**
+ * Armado de un paginador
+ * 
+ * @category SURFORCE
+ * @package SURFORCE-LIBRARY 
+ * @license GPL v2
+ */
 class Zsurforce_View_Helper_FormPaginado
 {
     /**
-     * form  		= nombre del formulario actual
-     * cantTotal 	= cantidad de registros que devuelve la consulta
-     * cantMaxima 	= la cantidad maxima de registros a mostrar por pagina
-     * pagActual 	= pagina actual dentro del listado
-     * estiloNro 	= estilo con el que se mostraran los numeros
-     * estiloActual	= estilo con el que se mostraran el numero de la pagina
-     * actual
-     * estiloOtros 	= estilo de los separadores
-     * separador 	= separador a mostrar entre los numeros de la paginacion
-     *
+     * Armado de un paginado 
+     * 
+     * @param string form			nombre del formulario actual
+     * @param integer cantTotal		cantidad de registros que devuelve la consulta
+     * @param integer cantMaxima	cantidad maxima de registros a mostrar por pagina
+     * @param integer pagActual		pagina actual dentro del listado
+     * @param string estiloNro		estilo con el que se mostraran los numeros
+     * @param string estiloActual	estilo con el que se mostraran el numero de la pagina actual
+     * @param string estiloOtros	estilo de los separadores
+     * @param string separador		separador a mostrar entre los numeros de la paginacion
      */
-    function formPaginado( $form="", $cantTotal=0, $cantMaxima=10, $pagActual=0,
-        $estiloNro="enlacemenu", $estiloActual="enlacemenu", $estiloOtro="", $separador="|")
+    function formPaginado( 
+    	$form = "", 
+    	$cantTotal = 0, 
+    	$cantMaxima = 10, 
+    	$pagActual = 0,
+        $estiloNro = "enlacemenu", 
+        $estiloActual = "enlacemenu", 
+        $estiloOtro = "", 
+        $separador = "|" )
     {
-
         $xhtml = "";
 
         //chequeo valores recibidos
-        if($form==""){
+        if( $form=="" ){
             return "";
         }
-
-        if($cantMaxima<=0){
+        if( $cantMaxima <= 0 ){
             return "";
         }
-
         // preparación de estilos
         if ( $estiloNro=="" ){
             $estiloNroStr ="";
