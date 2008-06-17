@@ -1,16 +1,22 @@
 <?php
-class Zsurforce_Utils_Logger {
-
-    static function log( $mensaje )
+/**
+ * Clase para definir un logger para la aplicación
+ * 
+ * @category SURFORCE
+ * @package SURFORCE-LIBRARY 
+ * @license GPL v2
+ */
+class Zsurforce_Utils_Logger 
+{
+    public static function log( $mensaje )
     {
-        $config = Zend_Registry::get('config');
-        $writer = new Zend_Log_Writer_Stream('./log/log');
+        $config = Zend_Registry::get('config_sys');
+        $writer = new Zend_Log_Writer_Stream('./log/app.log');
         $logger = new Zend_Log($writer);
         
         if ($config->constantes->debug){
             $logger->log($mensaje, Zend_Log::INFO);
         }
-        //$logger->log("constante ".$config->constantes->debug, Zend_Log::INFO);
     }
 }
 ?>
