@@ -1,13 +1,35 @@
 <?php
-
 require_once "html/scripts/fckeditor/fckeditor.php";
 
+/**
+ * Invocación de FCKeditor desde la vista
+ * 
+ * @category SURFORCE
+ * @package SURFORCE-LIBRARY 
+ * @license GPL v2
+ */
 class Zsurforce_View_Helper_FormFCKeditor
 {
+	/**
+	 * Nombre de la instancia
+	 */
     private $_instanceName;
+    /**
+     * Ruta base de la aplicación
+     */
     private $_sBasePath;
+    /**
+     * El objeto FCKeditor que posteriormente será retornado
+     */
     private $_oFCKeditor;
 
+    /**
+	 * Generador del FCKeditor
+	 * 
+     * @param  string $instanceName		instancia
+     * @param  string $contentValue		valor del contenido     
+     * @return fckeditor 
+    */	
     public function formFCKeditor( $instanceName = null, $contentValue = null )
     {
         $this->_instanceName = $instanceName ;
@@ -23,7 +45,7 @@ class Zsurforce_View_Helper_FormFCKeditor
         $this->_oFCKeditor->Value       = $this->_contentValue;
         $this->_oFCKeditor->Config['CustomConfigurationsPath'] = '../myconfig.js' ;
         $this->_oFCKeditor->Width  = '100%' ;
-        $this->_oFCKeditor->Height = '600' ;
+        $this->_oFCKeditor->Height = '400' ;
 
         return $this->_oFCKeditor->Create();
     }
