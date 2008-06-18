@@ -28,9 +28,11 @@ class Zsurforce_View_Helper_FormFCKeditor
 	 * 
      * @param  string $instanceName		instancia
      * @param  string $contentValue		valor del contenido     
+     * @param  string $width			ancho del formulario
+     * @param  string $height			alto del formulario
      * @return fckeditor 
-    */	
-    public function formFCKeditor( $instanceName = null, $contentValue = null )
+    */	    
+    public function formFCKeditor( $instanceName = null, $contentValue = null, $width = '100%', $height = '300' )
     {
         $this->_instanceName = $instanceName ;
         $this->_contentValue = $contentValue;
@@ -41,11 +43,12 @@ class Zsurforce_View_Helper_FormFCKeditor
         $this->_sBasePath = $sBasePath . "html/scripts/fckeditor/";
 
         $this->_oFCKeditor = new FCKeditor( $this->_instanceName );
+        
         $this->_oFCKeditor->BasePath	= $this->_sBasePath ;
         $this->_oFCKeditor->Value       = $this->_contentValue;
         $this->_oFCKeditor->Config['CustomConfigurationsPath'] = '../myconfig.js' ;
-        $this->_oFCKeditor->Width  = '100%' ;
-        $this->_oFCKeditor->Height = '400' ;
+        $this->_oFCKeditor->Width  = $width;
+        $this->_oFCKeditor->Height = $height;
 
         return $this->_oFCKeditor->Create();
     }
