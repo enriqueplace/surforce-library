@@ -40,13 +40,16 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
     	 */
         $this->_registry 	= Zend_Registry::getInstance();
 		$this->_debug 		= $this->_registry->get('config_sys')->debug;
-        $this->_session 	= $this->_registry->get('session');
+		
+		if( Zend_Registry::isRegistered('session')){
+			$this->_session 	= $this->_registry->get('session');
+		}
           
         /*
          * Carga información para las vistas del sistema
          */
         $this->initView();
-        $this->view->basePath 	= $this->registry->get('base_path');
+        $this->view->basePath 	= $this->_registry->get('base_path');
         $this->view->baseUrl 	= $this->_request->getBaseUrl();        
         $this->view->debug 		= $this->_debug;
         $this->view->session 	= $this->_session;
