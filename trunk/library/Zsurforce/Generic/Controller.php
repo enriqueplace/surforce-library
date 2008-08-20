@@ -53,7 +53,7 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
         $this->view->baseUrl 	= $this->_request->getBaseUrl();        
         $this->view->debug 		= $this->_debug;
         $this->view->session 	= $this->_session;
-        $this->view->user 		= Zend_Auth::getInstance ()->getIdentity ();
+        $this->view->user 		= Zend_Auth::getInstance ()->getIdentity();
         
 		/* Ruta para acceder a toda la información pública y compartida del sistema: 
 		 * - estilos
