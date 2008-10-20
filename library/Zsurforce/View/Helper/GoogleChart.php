@@ -6,7 +6,7 @@
  * @package SURFORCE-LIBRARY 
  * @license GPL v2
  */
-class Estadisticas_View_Helper_GoogleChart
+class Zsurforce_View_Helper_GoogleChart
 {
 	/**
 	 * Creación de gráficas con Google Chart
