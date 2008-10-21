@@ -16,9 +16,10 @@ class Zsurforce_View_Helper_GoogleChart
 	 * @param string chd
 	 * @param string chm
 	 * @param string chg
+         * @param string chds
 	 * @return xhtml
 	 */
-    public function googleChart( $chx, $chtt, $chd, $chm = null, $chg = null )
+    public function googleChart( $chx, $chtt, $chd, $chm = null, $chg = null , $chds = "1,100")
     {
     	$chm = "D,C6D9FD,1,0,8|D,4D89F9,0,0,4";
 		$chg = "20,50,1,0";
@@ -27,7 +28,7 @@ class Zsurforce_View_Helper_GoogleChart
 			"http://chart.apis.google.com/chart?chs=1000x300",
 			"cht=ls",
 			"chxt=x,y",
-			"chds=1,100",
+			"chds=" . $chds,
 			"chxl=0:|" . $chx ,
 			"chtt=" . $chtt,
 			"chd=t:" . $chd,
