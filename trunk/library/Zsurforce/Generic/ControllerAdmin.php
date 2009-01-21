@@ -7,6 +7,9 @@
  * @package SURFORCE-LIBRARY 
  * @license GPL v2
  */
+
+require_once '../application/default/models/Menu.php';
+
 abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Controller
 {
 	/**
