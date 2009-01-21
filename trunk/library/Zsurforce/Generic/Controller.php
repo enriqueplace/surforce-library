@@ -38,32 +38,40 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
     	/*
     	 * Carga información desde el bootstrap (index.php).
     	 */
-        $this->_registry 	= Zend_Registry::getInstance();
-		$this->_debug 		= $this->_registry->get('config_sys')->debug;
+        $this->_registry = Zend_Registry::getInstance();
+		$this->_debug  = $this->_registry->get('config')->debug;
+        $this->_devel   = $this->_registry->get('config')->devel;
+        $this->_config  = $this->_registry->get('config');
 		
 		if( Zend_Registry::isRegistered('session')){
 			$this->_session 	= $this->_registry->get('session');
 		}
           
-        /*
+      /*
          * Carga información para las vistas del sistema
          */
         $this->initView();
-        $this->view->basePath 	= $this->_registry->get('base_path');
-        $this->view->baseUrl 	= $this->_request->getBaseUrl();        
-        $this->view->debug 		= $this->_debug;
-        $this->view->session 	= $this->_session;
-        $this->view->user 		= Zend_Auth::getInstance ()->getIdentity();
-        
-		/* Ruta para acceder a toda la información pública y compartida del sistema: 
-		 * - estilos
-		 * - layout 
-		 * - imagenes
-		 * - scripts / js / etc
-		 */
-        $this->view->addBasePath('./html/','');
-        
-        $this->view->addHelperPath('./library/Zsurforce/View/Helper/', 'Zsurforce_View_Helper');   		
+        $this->view->basePath       = $this->_registry->get('base_path_app');
+        $this->view->basePathHtml 	= $this->_registry->get('base_path_html');
+        $this->view->baseUrl        = $this->_request->getBaseUrl();
+
+        $this->view->debug          = $this->_debug;
+        $this->view->devel          = $this->_devel;
+        $this->view->session        = $this->_session;
+        $this->view->config         = $this->_config;
+
+        $this->view->user           = Zend_Auth::getInstance ()->getIdentity();
+        $this->view->controllerName = $this->_request->getParam('controller');
+        $this->view->moduleName     = $this->_request->getParam('module');
+
+        $this->view->addHelperPath(
+            '../library/Zsurforce/View/Helper/',
+            'Zsurforce_View_Helper'
+        );
+        $this->view->addHelperPath(
+            'ZendX/JQuery/View/Helper',
+            'ZendX_JQuery_View_Helper'
+        );
         
         /*
          * Ejemplo para cargar por defecto las clases necesarias para el controller,
@@ -89,4 +97,3 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
 		}
     }
 }
-?>
