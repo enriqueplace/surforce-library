@@ -19,11 +19,16 @@ abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Contr
 	final function preDispatch()
 	{
 		$auth = Zend_Auth::getInstance ();
+        
 		if ($auth->hasIdentity ()) {
 			$this->view->usuarioLogueado = true;
+            
+            /* Genera el menú dinámico para el sistema de admin */
+            $layout = Zend_Layout::getMvcInstance();
+            $layout->menu = Models_Menu::getMenu($this->_registry->config->general->appid);
 		}else {
-			die('Acceso Restringido');
+			$this->_redirect('/admin/login/');
+            return;
 		}
 	}	
 }
-?>
