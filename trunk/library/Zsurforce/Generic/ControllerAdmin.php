@@ -21,14 +21,32 @@ abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Contr
 	 */
 	final function preDispatch()
 	{
-		$auth = Zend_Auth::getInstance ();
+		$auth = Zend_Auth::getInstance();
         
 		if ($auth->hasIdentity ()) {
 			$this->view->usuarioLogueado = true;
             
             /* Genera el menú dinámico para el sistema de admin */
-            $layout = Zend_Layout::getMvcInstance();
-            $layout->menu = Models_Menu::getMenu($this->_registry->config->general->appid);
+            try{
+
+                $layout = Zend_Layout::getMvcInstance();
+                $layout->menu = Models_Menu::getMenu($this->_registry->config->general->appid);
+
+            }catch(Zend_Db_Statement_Exception $e){
+                $this->view->mensajeError =
+                    'Se ha producido un error al intentar recuperar los datos <br><br>'
+                    .'['.$e->getMessage().']<br><br>'
+                    .' Por favor envíe un email a sistemas '.$this->_config->general->email ;
+            }catch(Zend_Db_Adapter_Exception $e){
+                $this->view->mensajeError =
+                    'Se ha producido un error al conectar a la base de datos.'
+                    .' Por favor reintente en unos minutos';
+            }catch(Exception $e){
+                $this->view->mensajeError =
+                    'Se ha producido un error inesperado.'
+                    .' Por favor reintente en unos minutos';
+            }
+            
 		}else {
 			$this->_redirect('/admin/login/');
             return;
