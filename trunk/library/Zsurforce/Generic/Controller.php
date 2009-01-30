@@ -40,8 +40,8 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
          */
         $this->_registry = Zend_Registry::getInstance();
         
-        $this->_debug  = $this->_registry->get('config')->debug;
-        $this->_devel   = $this->_registry->get('config')->devel;
+        $this->_debug   = $this->_registry->get('debug');
+        $this->_devel   = $this->_registry->get('devel');
         $this->_config  = $this->_registry->get('config');
 
         if( Zend_Registry::isRegistered('session')){
@@ -62,6 +62,12 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
         $this->view->config         = $this->_config;
 
         $this->view->user           = Zend_Auth::getInstance()->getIdentity();
+
+        if(isset($this->_debug) && $this->_debug){
+            var_dump($this->_request);
+        }
+        
+
         $this->view->controllerName = $this->_request->getParam('controller');
         $this->view->moduleName     = $this->_request->getParam('module');
 
