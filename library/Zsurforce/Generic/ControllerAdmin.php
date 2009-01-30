@@ -30,7 +30,7 @@ abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Contr
             try{
 
                 $layout = Zend_Layout::getMvcInstance();
-                $layout->menu = Models_Menu::getMenu($this->_registry->config->general->appid);
+                $layout->menu = Models_Menu::getMenu($this->_registry->config->application->id);
 
             }catch(Zend_Db_Statement_Exception $e){
                 $this->view->mensajeError =
