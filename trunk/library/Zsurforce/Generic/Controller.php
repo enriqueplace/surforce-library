@@ -49,6 +49,13 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
         }
 
         /*
+         * Carga información para el layout (antes de las vistas)
+         */
+        $layout = Zend_Layout::getMvcInstance();
+        $layout->logo = $this->_config->layout->logo;
+
+
+        /*
          * Carga información para las vistas del sistema
          */
         $this->initView();
