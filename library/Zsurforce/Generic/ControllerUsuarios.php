@@ -10,7 +10,7 @@
 
 require_once '../application/default/models/Menu.php';
 
-abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Controller
+abstract class Zsurforce_Generic_ControllerUsuarios extends Zsurforce_Generic_Controller
 {
 	/**
 	 * Verifica siempre que el usuario esté logueado, de lo contrario
@@ -61,7 +61,7 @@ abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Contr
             }
             
 		}else {
-			$this->_redirect('/admin/login/');
+			$this->_redirect('/usuarios/login/');
             return;
 		}
 	}	
