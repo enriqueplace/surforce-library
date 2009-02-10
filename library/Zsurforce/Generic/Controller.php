@@ -68,7 +68,7 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
         $this->view->session        = $this->_session;
         $this->view->config         = $this->_config;
 
-        $this->view->user           = Zend_Auth::getInstance()->getIdentity();
+        $this->_user = $this->view->user = Zend_Auth::getInstance()->getIdentity();
 
         /*
          * FIXME: generar un archivo de log, al imprimir esta linea

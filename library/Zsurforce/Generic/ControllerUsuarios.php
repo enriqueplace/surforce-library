@@ -12,6 +12,7 @@ require_once '../application/default/models/Menu.php';
 
 abstract class Zsurforce_Generic_ControllerUsuarios extends Zsurforce_Generic_Controller
 {
+    private $_user;
 	/**
 	 * Verifica siempre que el usuario esté logueado, de lo contrario
 	 * interrumpe la ejecución de un controller.
@@ -25,6 +26,7 @@ abstract class Zsurforce_Generic_ControllerUsuarios extends Zsurforce_Generic_Co
         
 		if ($auth->hasIdentity ()) {
 			$this->view->usuarioLogueado = true;
+            $this->_user = $this->view->user = Zend_Auth::getInstance()->getIdentity();
             
             /* Genera el menú dinámico para el sistema de admin */
             try{
