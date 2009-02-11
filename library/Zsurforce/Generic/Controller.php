@@ -40,9 +40,10 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
          */
         $this->_registry = Zend_Registry::getInstance();
         
-        $this->_debug   = $this->_registry->get('debug');
+        $this->_debug  = $this->_registry->get('debug');
         $this->_devel   = $this->_registry->get('devel');
         $this->_config  = $this->_registry->get('config');
+        $this->_user    = Zend_Auth::getInstance()->getIdentity();
 
         if( Zend_Registry::isRegistered('session')){
             $this->_session 	= $this->_registry->get('session');
@@ -63,12 +64,11 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
         $this->view->basePathHtml 	= $this->_registry->get('base_path_html');
         $this->view->baseUrl        = $this->_request->getBaseUrl();
 
-        $this->view->debug          = $this->_debug;
-        $this->view->devel          = $this->_devel;
-        $this->view->session        = $this->_session;
-        $this->view->config         = $this->_config;
-
-        $this->_user = $this->view->user = Zend_Auth::getInstance()->getIdentity();
+        $this->view->debug    = $this->_debug;
+        $this->view->devel     = $this->_devel;
+        $this->view->session  = $this->_session;
+        $this->view->config   = $this->_config;
+        $this->view->user      = $this->_user;
 
         /*
          * FIXME: generar un archivo de log, al imprimir esta linea
