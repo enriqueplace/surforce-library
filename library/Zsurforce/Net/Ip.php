@@ -1,13 +1,17 @@
 <?php
 abstract class Zsurforce_Net_Ip
 {
-    public function getIp()
+    public static function getIp()
     {
-        return $_SERVER[REMOTE_ADDR];
+        return $_SERVER['REMOTE_ADDR'];
     }
-    public function getIpReal()
+    public static function getReferer()
     {
-       if( $_SERVER['HTTP_X_FORWARDED_FOR'] != '' ){
+        return $_SERVER['HTTP_REFERER'];
+    }
+    public static function getIpReal()
+    {
+       if( getenv('HTTP_X_FORWARDED_FOR') != '' ){
           $client_ip =
              ( !empty($_SERVER['REMOTE_ADDR']) ) ?
                 $_SERVER['REMOTE_ADDR']
@@ -17,7 +21,7 @@ abstract class Zsurforce_Net_Ip
                    :
                    "unknown" );
 
-          $entries = split('[, ]', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            $entries = split('[, ]', getenv('HTTP_X_FORWARDED_FOR'));
 
           reset($entries);
           
@@ -52,4 +56,3 @@ abstract class Zsurforce_Net_Ip
        return $client_ip;
     }
 }
-?>
