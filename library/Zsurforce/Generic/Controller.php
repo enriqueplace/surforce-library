@@ -27,6 +27,12 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
      */
     protected $_debug = null;
 
+    protected $_controllerName = null;
+    
+    protected $_moduleName = null;
+
+    protected $_user = null;
+
     /**
      * Define inicio del controller
      *
@@ -78,8 +84,8 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
             echo "<!--".var_export($this->_request,true)."-->";
         }      
 
-        $this->view->controllerName = $this->_request->getParam('controller');
-        $this->view->moduleName     = $this->_request->getParam('module');
+        $this->_controllerName = $this->view->controllerName = $this->_request->getParam('controller');
+        $this->_moduleName = $this->view->moduleName     = $this->_request->getParam('module');
 
         $this->view->addHelperPath(
             '../library/Zsurforce/View/Helper/',
