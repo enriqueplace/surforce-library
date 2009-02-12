@@ -69,10 +69,14 @@ abstract class Zsurforce_Generic_ControllerUsuarios extends Zsurforce_Generic_Co
     public function init()
     {
         parent::init();
-        Models_Usuarios::registrarAcceso(
-            $this->_user->usuario_mail,
-            $this->_moduleName,
-            $this->_controllerName
-        );
+        if($this->_user){
+            Models_Usuarios::registrarAcceso(
+                $this->_user->usuario_mail,
+                $this->_moduleName,
+                $this->_controllerName
+            );    
+        }else{
+            Models_Usuarios::registrarAcceso();    
+        }
     }
 }
