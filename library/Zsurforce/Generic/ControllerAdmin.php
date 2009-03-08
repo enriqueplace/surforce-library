@@ -8,7 +8,7 @@
  * @license GPL v2
  */
 
-require_once '../application/default/models/Menu.php';
+require_once '../application/admin/models/Menu.php';
 
 abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Controller
 {
@@ -31,15 +31,19 @@ abstract class Zsurforce_Generic_ControllerAdmin extends Zsurforce_Generic_Contr
             /* Genera el menú dinámico para el sistema de admin */
             try{
 
+                $menuModel = new Admin_Models_Menu();
+                
                 $layout = Zend_Layout::getMvcInstance();
 
-                $layout->menu = Models_Menu::getMenu(
+                $layout->menu = $menuModel->getMenu(
+                    $this->_registry->config->database->table->admin_menu,
                     $this->_registry->config->application->id
                 );
-                
-                $layout->menuItems = Models_Menu::getMenuItemsFromModule(
+
+                /*
+                $layout->menuItems = $menuModel->getMenuItemsFromModule(
                       $this->view->moduleName
-                );
+                );*/
 
             }catch(Zend_Db_Statement_Exception $e){
 

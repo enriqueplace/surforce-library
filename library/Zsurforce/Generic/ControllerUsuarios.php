@@ -33,10 +33,12 @@ abstract class Zsurforce_Generic_ControllerUsuarios extends Zsurforce_Generic_Co
                 $layout = Zend_Layout::getMvcInstance();
 
                 $layout->menu = Models_Menu::getMenu(
+                    $this->_registry->config->database->table->usuarios_menu,
                     $this->_registry->config->application->id
                 );
 
                 $layout->menuItems = Models_Menu::getMenuItemsFromModule(
+                    $this->_registry->config->database->table->usuarios_menu_items,
                     $this->view->moduleName
                 );
 
