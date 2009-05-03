@@ -18,6 +18,10 @@ class Zsurforce_View_Helper_HtmlEmailOfuscado
     {
         $arr = explode('@', $email);
 
-        return $arr[0] .' en ' .$arr[1];
+        if(count($arr) > 1){
+            return $arr[0] .' en ' .$arr[1];
+        }else{
+            return "falta configurar email en config.ini";
+        }        
     }
 }
