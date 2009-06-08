@@ -45,10 +45,17 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
          * Carga información desde el bootstrap (index.php).
          */
         $this->_registry = Zend_Registry::getInstance();
+
+        if (Zend_Registry::isRegistered('debug')) {
+            $this->_debug  = $this->_registry->get('debug');
+        }
+        if (Zend_Registry::isRegistered('devel')) {
+            $this->_devel   = $this->_registry->get('devel');
+        }
+        if (Zend_Registry::isRegistered('config')) {
+            $this->_config  = $this->_registry->get('config');
+        }
         
-        $this->_debug  = $this->_registry->get('debug');
-        $this->_devel   = $this->_registry->get('devel');
-        $this->_config  = $this->_registry->get('config');
         $this->_user    = Zend_Auth::getInstance()->getIdentity();
 
         if( Zend_Registry::isRegistered('session')){
@@ -66,8 +73,13 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
          * Carga información para las vistas del sistema
          */
         $this->initView();
-        $this->view->basePath       = $this->_registry->get('base_path_app');
-        $this->view->basePathHtml 	= $this->_registry->get('base_path_html');
+         if (Zend_Registry::isRegistered('base_path_app')) {
+            $this->view->basePath       = $this->_registry->get('base_path_app');
+         }
+        if (Zend_Registry::isRegistered('base_path_html')) {
+            $this->view->basePathHtml 	= $this->_registry->get('base_path_html');
+        }
+        
         $this->view->baseUrl        = $this->_request->getBaseUrl();
 
         $this->view->debug    = $this->_debug;
