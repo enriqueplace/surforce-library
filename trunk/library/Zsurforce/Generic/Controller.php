@@ -33,6 +33,8 @@ abstract class Zsurforce_Generic_Controller extends Zend_Controller_Action
 
     protected $_user = null;
 
+    protected $_config = null;
+    
     /**
      * Define inicio del controller
      *
